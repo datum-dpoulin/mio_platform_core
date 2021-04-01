@@ -58,31 +58,5 @@ default-synthesizers = [ { name = 'vivado' , version = '^' } ]
 
 [simulation]
 sim-paths = ["/sim"]
-preffered-simulators = [ { name = "xilinx", version = "^" } ]
-artifacts-paths = [ "/proj/arm/sw/rel/latest/bin/images/*.hex" ]
-results-paths = [ "/proj/arm/sw/rel/latest/bin/images/*.hex" ]
 default-test-bench = ""
 default-test = ""
-
-
-[[version-control]]
-type = "git"
-url = "https://github.com/Datum-Technology-Corporation/mio_arm"
-user-name = "peon"
-password = "3700adf1f25fab8202c1343c4b0b4e3fec706d57cad574086467b8b3ddf273ec"
-
-
-[[scheduling]]
-type = "grid"
-hosts = ["grid1.datumint.com"]
-user-name = "peon"
-password = "3700adf1f25fab8202c1343c4b0b4e3fec706d57cad574086467b8b3ddf273ec"
-default-queue = "default"
-default-priority = "medium"
-
-
-[[ci]]
-type = "jenkins"
-url = "http://datumint.com/ci/jenkins/mio_arm"
-user-name = "admin"
-password = "3700adf1f25fab8202c1343c4b0b4e3fec706d57cad574086467b8b3ddf273ec"

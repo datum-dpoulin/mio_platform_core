@@ -23,7 +23,7 @@
 
 
 
-title = "Moore.io ARM Project Configuration"                                                       # Standard for toml files -- don't care from mio standpoint
+title = "Moore.io Sample User Configuration File"                                                  # Standard for toml files -- don't care from mio standpoint
 
 [ip]
 default-ip = ""

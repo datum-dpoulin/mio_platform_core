@@ -34,6 +34,7 @@
 settings: # Regressions runner settings
    priority: medium
    max-concurrent-jobs: 10
+   name: Sample mio Test Suite
 
 parameters:
    init:

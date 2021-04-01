@@ -100,6 +100,11 @@ hdl-src:
    compilation-arguments: ["+define+UVM_MAX_PACK_BYTES=65_536"]
 
 
+
+doc-gen:
+   docs: [""]
+
+
 events:
    pre-git-pull:
    post-git-pull:
