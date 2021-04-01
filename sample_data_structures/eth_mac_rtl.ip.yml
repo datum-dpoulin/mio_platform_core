@@ -17,42 +17,43 @@
 ## 
 
 
+## README
+# This is an IP Metadata file that describes a UVM Agent for AXI-Lite
+
+
 core:
    uid: ef15c1cc-2d1d-4fe6-b3c1-c9872ed1f221
-   name: "uvml_axil"
-   type: "verification-ip"
-   aliases: null
-   full-name: "AXI-Lite UVM Agent"
+   name: "eth_mac_10g"
+   type: "rtl-ip"
+   aliases: 
+   full-name: "Ethernet 10G MAC"
    version: "0.0.1"
    release-date: 2021-03-28
    description: >
-      UVM Agent for the AMBA Advanced eXtensible Interface protocol.
-   keywords: [ "amba", "arm" ]
+      RTL implementation of 802.3 MAC for 10G.
+   keywords: [ "eth", "ethernet", "802.3" ]
    catalog: "https://moore.io/ip/catalog"
-   suite: "mio-arm"
+   suite: 
    copyright-holders: ["Datum Technology Corporation"]
-   logo: "https://moore.io/assets/images/uvma_axil_logo.svg"
+   logo: "https://moore.io/assets/images/eth_mac_10g.svg"
    license: "SHL-2.1"
    private: False
 
-
-verification-ip:
-   methodology: "uvm"
-   type: "agent"
-   sub-type: "asymmetric"
-   sub-sub-type: "half-duplex"
-   block-diagram: "https://moore.io/assets/images/uvma_axil_block_diagram.svg"
+rtl-ip:
+   type:
+   sub-type:
+   sub-sub-type:
+   block-diagram:
    languages:
       - { name: "system-verilog", version: "^" }
-   dependencies:
-      - { name: "mio@uvm", version: "^", notes: "" }
-      - { name: "mio@uvml_hrtbt", version: "^", notes: "" }
-      - { name: "mio@uvml_logs", version: "^", notes: "" }
-      - { name: "mio@uvml_trn", version: "^", notes: "" }
-      - { name: "mio@uvml_reg", version: "^", notes: "" }
+   dependencies :
+      - { name: "mio@fifos_rtl", version: "^", notes: "" }
+      - { name: "mio@counters_rtl", version: "^", notes: "" }
+      - { name: "mio@mem_if_rtl", version: "^", notes: "" }
    simulators-supported:
       - { name: "xilinx", version: "2020.2", level: 100, notes: "" }
       - { name: "xilinx", version: "2019.2", level:  75, notes: "" }
+ 
 
 
 community:
@@ -63,18 +64,12 @@ community:
          email: "dpoulin@datumtc.ca",
          linked-in: "https://www.linkedin.com/in/david-poulin-24674734/"
       }
-      - {
-         name: "Abdoulaye Berthe",
-         org: "SmartComm Technologies",
-         email: "a.b.berthe@ieee.org",
-         linked-in: "https://www.linkedin.com/in/abdoulaye-berth%C3%A9-a2a138165/"
-      }
-   home-page: "https://github.com/Datum-Technology-Corporation/mio_arm/projects/1"
+   home-page: "https://github.com/Datum-Technology-Corporation/mio_eth/projects/1"
    repository:
       type: "git"
-      url: "https://github.com/Datum-Technology-Corporation/mio_arm"
+      url: "https://github.com/Datum-Technology-Corporation/mio_eth"
    bugs:
-      url: "https://github.com/Datum-Technology-Corporation/mio_arm/issues"
+      url: "https://github.com/Datum-Technology-Corporation/mio_et/issues"
       email: "bugs@moore.io"
    funding:
       type: ""
@@ -89,11 +84,11 @@ structure:
 
 
 hdl-src:
-   files: ["/*/*.sv"]
+   files: ["/*/*.sv", "/*/*.svh", "/*/*.sv"]
    top-files: [ "/uvma_axil_pkg.sv" ]
    top-modules:
    tests-paths: [ "/ut" ]
-   compilation-arguments: ["+define+UVM_MAX_PACK_BYTES=65_536"]
+   compilation-arguments: ["+define+FIFOS_RTL_MAX_DEPTH=1_024"]
 
 
 events:
@@ -126,25 +121,16 @@ parameters:
    library:
    compilation:
       - {
-         name: "max-data-width",
-         type: "number",
-         min: 8,
-         max: 128,
-         cli-str: "+define+UVMA_AXIL_MAX_DATA_WIDTH", default: 32
-      }
-      - {
-         name: "max-address-width",
-         type: "number",
-         min: 8,
-         max: 128,
-         cli-str: "+define+UVMA_AXIL_MAX_ADDRESS_WIDTH",
-         default: 32
-      }
-      - {
-         name: "include-if-checker",
+         name: "enable-10g",
          type: "boolean",
-         cli-str: "+define+UVMA_AXIL_INC_IF_CHKR",
-         default: False
+         cli-str: "+define+ETH_MAC_10G25G_RTL_ENABLE_10G",
+         default: True
+      }
+      - {
+         name: "enable-25g",
+         type: "boolean",
+         cli-str: "+define+ETH_MAC_10G25G_RTL_ENABLE_25G",
+         default: True
       }
    elaboration:
    simulation:
@@ -163,29 +149,3 @@ template-metadata:
    input-parameters: null
 
 
-
-
-
-
-
-# no actual rtl in this vip, just here for demonstration
-rtl-ip:
-   languages:
-      - { name: "system-verilog", version: "^" }
-   dependencies :
-   simulators-supported:
-   type:
-   sub-type:
-   sub-sub-type:
-   block-diagram:
-
-
-# Demonstration only
-edapp:
-  language: "python" # or tcl or nodejs
-
-
-# demonstration only
-python-src:
-tcl-src:
-npm-module:
