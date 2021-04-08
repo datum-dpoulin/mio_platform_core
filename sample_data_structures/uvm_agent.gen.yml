@@ -4,26 +4,27 @@ template:
    category: datum_uvm_set
    description: 'UVM Agent with data transfer in only one direction.'
    parameters:
-      -
-         default: Datum Technology Corporation
-         name: name_of_copyright_owner
-         type: string
-      -
-         default: ''
-         name: name_full
-         type: string
-      -
-         default: ''
-         name: name
-         type: string
-      -
-         default: 2021
-         name: year
-         type: number
-      -
-         default: false
-         name: encrypted
-         type: boolean
+      - group-name: general
+         -
+            default: Datum Technology Corporation
+            name: name_of_copyright_owner
+            type: string
+         -
+            default: ''
+            name: name_full
+            type: string
+         -
+            default: ''
+            name: name
+            type: string
+         -
+            default: 2021
+            name: year
+            type: number
+         -
+            default: false
+            name: encrypted
+            type: boolean
    files:
       -
          executable: 'false'
